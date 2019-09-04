@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { match } from 'react-router-dom';
-import { MessageFeed } from '../components';
+import { MessageForm, MessageFeed } from '../components';
 
 
 interface ChannelMatch {
@@ -21,8 +21,10 @@ export class Channel extends React.Component<ChannelProps, {}> {
   public render() {
     const { channelName } = this.props.match.params;
     return (
-      <MessageFeed key='message-feed'
-        channelName={channelName} />
+      [
+        <MessageFeed key='message-feed' channelName={channelName} />,
+        <MessageForm key='message-form' channelName={channelName} />
+      ]
     );
   }
 }
