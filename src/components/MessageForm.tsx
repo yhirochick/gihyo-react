@@ -6,6 +6,7 @@ const baseUrl =  'https://react-sample-app-84674.firebaseio.com/';
 
 interface MessageFormProps {
   channelName: string;
+  setShouldReload: (shouldReload: boolean) => void;
 }
 
 interface MessageFormState {
@@ -43,6 +44,9 @@ export class MessageForm extends React.Component<MessageFormProps, MessageFormSt
       })
       .catch(err => {
         console.log(err);
+      })
+      .then(() => {
+        this.props.setShouldReload(true);
       });
   }
 

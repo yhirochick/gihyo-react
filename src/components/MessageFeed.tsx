@@ -4,6 +4,8 @@ import { Segment, Image, Comment, Header } from 'semantic-ui-react';
 
 interface MessageFeedProps {
   channelName: string;
+  shouldReload: boolean;
+  setShouldReload: (shouldReload: boolean) => void;
 }
 
 interface MessageFeedState {
@@ -30,7 +32,8 @@ export class MessageFeed extends React.Component<MessageFeedProps, MessageFeedSt
   }
 
   public componentDidUpdate(prevProps: MessageFeedProps) {
-    if (prevProps.channelName !== this.props.channelName) {
+    if (prevProps.channelName !== this.props.channelName ||
+        !prevProps.shouldReload && this.props.shouldReload) {
       this.fetchMessages(this.props.channelName);
     }
   }
